@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using GoogleMobileAds.Api;
 
@@ -23,11 +22,41 @@ public class AdDemoScript : MonoBehaviour {
         adManager = AdManager.instance;
     }
 
+    #region banner
+
     public void ShowBannerAd()
     {
         adManager.RequestBanner(bannerAdUnitId, AdSize.SmartBanner, AdPosition.Top);
-        adManager.LoadBanner();
+        adManager.LoadBanner(OnBannerAdLoaded, OnBannerAdFailedToLoad, OnBannerAdOpened, OnBannerAdClosed, OnBannerAdLeavingApplication);
     }
+
+    private void OnBannerAdLoaded(object sender, EventArgs args)
+    {
+        Debug.Log("BannerAdLoaded event received");
+    }
+
+    private void OnBannerAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
+    {
+        Debug.Log("BannerAdFailedToLoad event received: " + args.Message);
+    }
+
+    private void OnBannerAdOpened(object sender, EventArgs args)
+    {
+        Debug.Log("OnBannerAdOpened event received");
+    }
+
+    private void OnBannerAdClosed(object sender, EventArgs args)
+    {
+        Debug.Log("OnBannerAdClosed event received");
+    }
+
+    private void OnBannerAdLeavingApplication(object sender, EventArgs args)
+    {
+        Debug.Log("OnBannerAdLeavingApplication event received");
+    }
+
+
+    #endregion banner
 
     public void ShowInterstitialAd()
     {

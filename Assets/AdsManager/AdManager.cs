@@ -101,7 +101,7 @@ public class AdManager : MonoBehaviour {
     }
 
     public void LoadBanner(EventHandler<EventArgs> OnAdLoaded = null,
-        EventHandler<AdFailedToLoadEventArgs> OnAdFailedToLoad = null, EventHandler<EventArgs> OnAdOpening = null,
+        EventHandler<AdFailedToLoadEventArgs> OnAdFailedToLoad = null, EventHandler<EventArgs> OnAdOpened = null,
         EventHandler<EventArgs> OnAdClosed = null, EventHandler<EventArgs> OnAdLeavingApplication = null)
     {
         // do nothing when banner view is null
@@ -109,9 +109,9 @@ public class AdManager : MonoBehaviour {
 
         if (OnAdLoaded != null) bannerView.OnAdLoaded += OnAdLoaded;
         if (OnAdFailedToLoad != null) bannerView.OnAdFailedToLoad += OnAdFailedToLoad;
-        if (OnAdOpening != null) bannerView.OnAdLoaded += OnAdOpening;
-        if (OnAdClosed != null) bannerView.OnAdLoaded += OnAdClosed;
-        if (OnAdLeavingApplication != null) bannerView.OnAdLoaded += OnAdLeavingApplication;
+        if (OnAdOpened != null) bannerView.OnAdOpening += OnAdOpened;
+        if (OnAdClosed != null) bannerView.OnAdClosed += OnAdClosed;
+        if (OnAdLeavingApplication != null) bannerView.OnAdLeavingApplication += OnAdLeavingApplication;
 
         LoadBanner();
     }
